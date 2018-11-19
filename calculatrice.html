@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+  <head>
+  <meta charset="utf-8" />
+    <title>JavaScript training : create a calculator </title>
+         <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+  	<table border = "1">
+  		<tr>
+  			<td colspan="4">
+  				<input type= "text" id="ecran" value="0" readonly>
+  			</td>
+  		</tr>
+  		<tr>
+  			<td><button class="btn" onclick="calculer('ciffer','7')">7</button></td>
+  			<td><button class="btn" onclick="calculer('ciffer','8')">8</button></td>
+  			<td><button class="btn" onclick="calculer('ciffer','9')">9</button></td>
+  			<td><button class="btn" onclick="calculer('operator','+')">+</button></td>
+  		</tr>
+ 		<tr>
+  			<td><button class="btn" onclick="calculer('ciffer','4')">4</button></td>
+  			<td><button class="btn" onclick="calculer('ciffer','5')">5</button></td>
+  			<td><button class="btn" onclick="calculer('ciffer','6')">6</button></td>
+  			<td><button class="btn" onclick="calculer('operator','-')">-</button></td>
+  		</tr>
+ 		<tr>
+  			<td><button class="btn" onclick="calculer('ciffer','1')">1</button></td>
+  			<td><button class="btn" onclick="calculer('ciffer','2')">2</button></td>
+  			<td><button class="btn" onclick="calculer('ciffer','3')">3</button></td>
+  			<td><button class="btn" onclick="calculer('operator','x')">x</button></td>
+  		</tr>
+ 		<tr>
+  			<td><button class="btn" onclick="calculer('clear','C')">C</button></td>
+  			<td><button class="btn" onclick="calculer('ciffer','0')">0</button></td>
+  			<td><button class="btn" onclick="calculer('equal','=')"> = </button></td>
+  			<td><button class="btn" onclick="calculer('operator','/')">/</button></td>
+  		</tr>
+  	</table>
+  	<script type="text/javascript">
+  		function calculer(group, value) {
+  			var ecran = document.querySelector('#ecran'); //init du selecteur 
+  			switch(group){
+  				case'ciffer':
+  					if(ecran.value == '0') ecran.value = ''; //remplacer le champ '0' par champ vide
+  					ecran.value += value;
+  				break;
+  				case'operator':
+  					group1 = ecran.value; //enregistre valeurs à l'écran
+  					operation = value; //enregistre operateur selectionné
+  					ecran.value = ''; //affiche champ vide après selection d'un opérateur
+  				break;
+  				case 'equal':
+  					switch(operation){
+  						case '+':
+  							ecran.value = ecran.value*1 + parseInt(group1); // 1) '*1' permet de convertir en entier la valeur affichée pour pouvoir réaliser l'opération '+', comprise en tant que somme et non concaténation de str 2) 'parseInt' convertit en entier toute nouvelle entrée. 
+  						break;
+  						case '-':
+  							ecran.value = group1 - ecran.value;
+  						break;
+  						case '/':
+  							ecran.value = group1 / ecran.value;
+  						break;
+  					    case 'x':
+  					    	ecran.value = group1 * ecran.value;
+  						break;
+  					}
+  				break;
+				case'clear':
+
+  				break;  		
+  				}
+
+  			//ecran.value = value; //affiche la valeur selectionnée
+  		}
+  	</script>
+
+  </body>
+</html>
